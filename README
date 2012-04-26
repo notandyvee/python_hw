@@ -1,0 +1,9 @@
+This is my homework for CSC344 HW5 written in python.
+
+Homework:
+
+Write a Python program that collects, summarizes, and e-mails all the programming assignments for this course. In particular, assuming the programs are in subdirectories a1, a2, ... a5 of directory csc344:
+for each ai, generate a list of all identifiers used in the program (class, function, etc names) and place the [program, symbol] pairs in a "symbols" file.
+create a web page in the csc344 directory with links to each of the files.
+create a zip file containing all assignment sources, but excluding non-sources (executables, .class files, etc).
+prompt the user for a mail adress and send the zip file
