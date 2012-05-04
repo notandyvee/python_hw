@@ -10,7 +10,7 @@ def clean_list(the_list, string):
 			
 	#check to see which list to use to strip away any uneccessary symbols		
 	if string == 'c':
-		da_list = ['char', 'double', 'float', 'int', 'long', 'short', 'struct', 'include', 'define', 'if', 'while', 'for', 'NULL', 'EOF', 'FILE']
+		da_list = ['char', 'double', 'float', 'int', 'long', 'short', 'struct', 'include', 'define', 'if', 'while', 'for', 'else', 'NULL', 'EOF', 'FILE']
 	elif string == 'lisp':
 		da_list = []
 	elif string == 'scala':
@@ -30,6 +30,7 @@ def clean_list(the_list, string):
 			holder2.append(each_index)
 		test = False	
 	
+	#just removes duplicates
 	holder2 = set(holder2)
 				
 	return holder2	
@@ -37,16 +38,7 @@ def clean_list(the_list, string):
 #***************************END OF FUNCTION**********************************
 
 
-#***************************START OF FUNCTION*******************************
-def create_file(final_list):
-	with open('symbols', "w") as file_to_write:
-		test = False
-		#add iteration, which should definitely be for loop
-		for each_index in final_list:
-			print("[hw1.c, " + each_index + "]\n", file=file_to_write)
-				
 
-#***************************END OF FUNCTION**********************************
 
 
 #*********************START FUNCTION*******************************************
@@ -73,8 +65,11 @@ def parse_c_file():
 				list_holder.append(ch)
 				ch = ''
 	list_holder = clean_list(list_holder, 'c')
-	#return list_holder	
-	create_file(list_holder)		
+	#write the file symbols	
+	with open('symbols', "w") as file_to_write:
+		#add iteration, which should definitely be for loop
+		for each_index in list_holder:
+			print("[hw1.c, " + each_index + "]\n", file=file_to_write)		
 #*************************END OF FUNCTION*************************************	
 	
 def parse_lisp_file():

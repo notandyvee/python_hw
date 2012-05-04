@@ -1,7 +1,0 @@
-int func(int arg) { int x = 7; char c = 'a'; arg = x + c; return arg; }
-int optimus;
-char geroge;
-int i17,k;
-int destructo = (char *) k;
-float bee;
-
