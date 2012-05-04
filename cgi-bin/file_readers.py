@@ -1,28 +1,50 @@
 import os
-
+import re
 #***********************START OF FUNCTION***********************************
-def re_list(the_list):
+def clean_list(the_list, string):
 	#this function takes lists within a list and essentially relists it with just one main list
 	holder = []
 	for each_index in the_list:
-		if isinstance(each_index, list):
-			for inner in each_index:
-				holder.append(inner)
-		else:
-			holder.append(each_index.strip())
-	return holder
+		if re.search('^[a-zA-Z]', each_index):
+			holder.append(each_index)
+			
+	#check to see which list to use to strip away any uneccessary symbols		
+	if string == 'c':
+		da_list = ['char', 'double', 'float', 'int', 'long', 'short', 'struct', 'include', 'define', 'if', 'while', 'for', 'NULL', 'EOF', 'FILE']
+	elif string == 'lisp':
+		da_list = []
+	elif string == 'scala':
+		da_list = []
+	elif string == 'prolog':
+		da_list == []
+	elif string == 'python':
+		da_list == []
+		
+	holder2 = []
+	test = False
+	for each_index in holder:
+		for sym in da_list:
+			if each_index == sym:
+				test = True
+		if test == False:
+			holder2.append(each_index)
+		test = False	
+	
+	holder2 = set(holder2)
+				
+	return holder2	
+	
 #***************************END OF FUNCTION**********************************
 
 
 #***************************START OF FUNCTION*******************************
 def create_file(final_list):
-	keywords = ['char','double','float','int','long','short' ,'struct']
 	with open('symbols', "w") as file_to_write:
 		test = False
 		#add iteration, which should definitely be for loop
+		for each_index in final_list:
+			print("[hw1.c, " + each_index + "]\n", file=file_to_write)
 				
-
-
 
 #***************************END OF FUNCTION**********************************
 
@@ -37,53 +59,22 @@ def parse_c_file():
 		print("Failed to get to the page for some reason")	
 			
 	#now you can open the file and start reading the c file
-	list_holder = [];
-	scape_holder = []	
+	ch = ''
+	list_holder = [];	
 	with open('hw1.c') as f:
-		for each_line in f:
-			list_holder.append(each_line.split('('))
-		list_holder = re_list(list_holder)
-			
-	#Now you can loop through the list and parse each element and put it into another list
-	#re_list it, and repeat with the other dlimiters to split on
-	for each_index in list_holder:
-		scape_holder.append(each_index.split(')'))
-	list_holder = re_list(scape_holder)
-	scape_holder = []
-	
-	#for each_index in list_holder:
-		#scape_holder.append(each_index.split(','))
-	#list_holder = re_list(scape_holder)
-	#scape_holder = []
-	
-	for each_index in list_holder:
-		scape_holder.append(each_index.split('*'))
-	list_holder = re_list(scape_holder)
-	scape_holder = []
-	
-	for each_index in list_holder:
-		scape_holder.append(each_index.split('{'))
-	list_holder = re_list(scape_holder)
-	scape_holder = []
-	
-	for each_index in list_holder:
-		scape_holder.append(each_index.split('}'))
-	list_holder = re_list(scape_holder)
-	scape_holder = []
-	
-	#before you do anything with the spaces inbetween identifier and symbol strip any unecessary spaces
-	for each_index in list_holder:
-		scape_holder.append(each_index.strip())
-	list_holder = scape_holder
-	scape_holder = []
-	
-	#finally split by the spaces so there should be only single worlds next to each other
-	for each_index in list_holder:
-		scape_holder.append(each_index.split(' '))
-	list_holder = re_list(scape_holder)
-	scape_holder = []
-	
-	create_file(list_holder)
+		while True:
+			c = f.read(1)
+			if not c:
+				print("End of File")
+				break
+			if re.search("\w", c):
+				ch = ch + c
+			elif ch != '':
+				list_holder.append(ch)
+				ch = ''
+	list_holder = clean_list(list_holder, 'c')
+	#return list_holder	
+	create_file(list_holder)		
 #*************************END OF FUNCTION*************************************	
 	
 def parse_lisp_file():
