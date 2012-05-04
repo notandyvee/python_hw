@@ -140,6 +140,7 @@ def parse_scala_file():
 			print("[Driver.scala, " + each_index + "]\n", file=file_to_write)	
 #*******************************END OF FUNCTION*********************************
 
+#********************************START OF FUNCTION**************************
 def parse_prolog_file():
 	#make sure the current working directory is where the C file is
 	os.chdir('/Users/Zeroe/Documents/python_hw/csc344/a4')
@@ -148,24 +149,59 @@ def parse_prolog_file():
 	else:
 		print("Failed to get to the page for some reason")
 		
-		#now you can open the file and start reading the c file
-		ch = ''
-		list_holder = [];	
-		with open('hw4.pl') as f:
-			while True:
-				c = f.read(1)
-				if not c:
-					print("End of File")
-					break
-				if re.search("\w", c):
-					ch = ch + c
-				elif ch != '':
-					list_holder.append(ch)
-					ch = ''
-		list_holder = clean_list(list_holder)
+	#now you can open the file and start reading the c file
+	ch = ''
+	list_holder = [];	
+	with open('hw4.pl') as f:
+		while True:
+			c = f.read(1)
+			if not c:
+				print("End of File")
+				break
+			if re.search("\w", c):
+				ch = ch + c
+			elif ch != '':
+				list_holder.append(ch)
+				ch = ''
+	list_holder = clean_list(list_holder)
 
-		#write the file symbols	
-		with open('symbols', "w") as file_to_write:
-			#add iteration, which should definitely be for loop
-			for each_index in list_holder:
-				print("[hw4.pl, " + each_index + "]\n", file=file_to_write)
+	#write the file symbols	
+	with open('symbols', "w") as file_to_write:
+		#add iteration, which should definitely be for loop
+		for each_index in list_holder:
+			print("[hw4.pl, " + each_index + "]\n", file=file_to_write)
+#*******************************END OF FUNCTION***********************************			
+
+#********************************START OF FUNCTION**********************************
+
+def parse_python_file():
+	#make sure the current working directory is where the C file is
+	os.chdir('/Users/Zeroe/Documents/python_hw/csc344/a4')
+	if os.getcwd() == '/Users/Zeroe/Documents/python_hw/csc344/a4':
+		print("Successfully made it to the file that contains the scala code")
+	else:
+		print("Failed to get to the page for some reason")
+		
+	#now you can open the file and start reading the c file
+	ch = ''
+	list_holder = [];	
+	with open('hw4.pl') as f:
+		while True:
+			c = f.read(1)
+			if not c:
+				print("End of File")
+				break
+			if re.search("\w", c):
+				ch = ch + c
+			elif ch != '':
+				list_holder.append(ch)
+				ch = ''
+	list_holder = clean_list(list_holder)
+
+	#write the file symbols	
+	with open('symbols', "w") as file_to_write:
+		#add iteration, which should definitely be for loop
+		for each_index in list_holder:
+			print("[hw4.pl, " + each_index + "]\n", file=file_to_write)
+			
+#*******************************END OF FUNCTION**************************************
