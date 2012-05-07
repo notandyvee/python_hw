@@ -32,7 +32,7 @@ print('<html>')
 print('<head><title>Homework 5</title></head>')
 print('<body>')
 print("<p>"+os.getcwd()+"</p>")
-print("<h1>Pick one to go to file</h1>")
+print("<h1>Pick one to go to file (The \'Symbols\' files belong to any preceding code with extensions)</h1>")
 print('<form method=\"POST\" action=\"print_file.py\">')
 	
 print(html_string)

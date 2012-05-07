@@ -37,7 +37,7 @@ def send_file_zipped(the_file, recipients, sender='avaldez31890@gmail.com'):
 
     # send the message
     smtp = smtplib.SMTP_SSL("smtp.gmail.com", 465, "res-dhcp-129-3-136-245")
-    smtp.login("avaldez31890@gmail.com", "jujibean")
+    smtp.login("INSERT_REAL_EMAIL_HERE", "INSERT_REAL_PASS_HERE")
     smtp.sendmail(sender, recipients, themsg)
     smtp.quit()
 
