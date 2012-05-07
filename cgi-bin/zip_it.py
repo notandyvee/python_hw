@@ -18,7 +18,7 @@ form_data = cgi.FieldStorage()
 le_file = form_data['email'].value
 
 
-def send_file_zipped(the_file, recipients, sender='avaldez31890@gmail.com'):
+def send_file_zipped(the_file, recipients, sender='INSERT_REAL_EMAIL_HERE'):
     myzip = open(the_file, 'rb')
         
 
