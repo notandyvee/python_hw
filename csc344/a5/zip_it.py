@@ -18,7 +18,7 @@ form_data = cgi.FieldStorage()
 le_file = form_data['email'].value
 
 
-def send_file_zipped(the_file, recipients, sender='INSERT_EMAIL_HERE'):
+def send_file_zipped(the_file, recipients, sender='avaldez31890@gmail.com'):
     myzip = open(the_file, 'rb')
         
 
@@ -35,9 +35,9 @@ def send_file_zipped(the_file, recipients, sender='INSERT_EMAIL_HERE'):
     themsg.attach(msg)
     themsg = themsg.as_string()
 
-    # send the message INSERT_EMAIL_HERE INSERT_PASS_HERE INSERT_HOSTNAMEHERE
-    smtp = smtplib.SMTP_SSL("smtp.gmail.com", 465, "INSERT_HOSTNAMEHERE")
-    smtp.login("INSERT_EMAIL_HERE", "INSERT_PASS_HERE")
+    # send the message
+    smtp = smtplib.SMTP_SSL("smtp.gmail.com", 465, "res-dhcp-129-3-136-245")
+    smtp.login("avaldez31890@gmail.com", "jujibean")
     smtp.sendmail(sender, recipients, themsg)
     smtp.quit()
 
