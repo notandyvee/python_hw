@@ -60,20 +60,21 @@ def return_files():
 	os.chdir('/Users/Zeroe/Documents/python_hw/csc344')
 	el_files = []
 	count = 1
-	while count <= 4:
+	while count <= 5:
 		globber = 'a'+str(count)+'/*.*'
 		el_files.extend(glob.glob(globber))
 		count = count + 1
 	return el_files
 
-
-el_files = return_files()
-myzip =  zipfile.ZipFile('hw5.zip', 'w', zipfile.ZIP_DEFLATED)
-for each_file in el_files:
-	le_list = split_stuff(each_file)
-	os.chdir('/Users/Zeroe/Documents/python_hw/csc344/'+le_list[0])
-	myzip.write(le_list[1])
-myzip.close()
+os.chdir('/Users/Zeroe/Documents/python_hw/csc344')
+if not glob.glob('hw5.zip'):
+	el_files = return_files()
+	myzip =  zipfile.ZipFile('hw5.zip', 'w', zipfile.ZIP_DEFLATED)
+	for each_file in el_files:
+		le_list = split_stuff(each_file)
+		os.chdir('/Users/Zeroe/Documents/python_hw/csc344/'+le_list[0])
+		myzip.write(le_list[1])
+		myzip.close()
 		
 		
 
@@ -83,8 +84,6 @@ print('<head><title>Homework 5</title><style>body{background-color: gray; color:
 print('<body>')
 
 if isset() == True:
-	
-	print('<p>'+os.getcwd()+'</p>')
 	
 
 	

@@ -11,6 +11,8 @@ file_readers.parse_scala_file()
 
 file_readers.parse_prolog_file()
 
+file_readers.parse_python_file()
+
 print('Content-type: text/html\n')
 print('<html>')
 print('<head><title>Homework 5</title><style>body{background-color: gray; color: black;}h1{text-align: center;}</style></head>')

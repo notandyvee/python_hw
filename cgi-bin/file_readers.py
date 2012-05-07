@@ -1,6 +1,7 @@
 import os
 import re
 import glob
+
 #***********************START OF FUNCTION***********************************
 def clean_list(the_list):
 	#this function takes lists within a list and essentially relists it with just one main list
@@ -159,25 +160,31 @@ def parse_python_file():
 		print("Failed to get to the page for some reason")
 		
 	#now you can open the file and start reading the python file
-	ch = ''
-	list_holder = [];	
-	with open('hw5.py') as f:
-		while True:
-			c = f.read(1)
-			if not c:
-				print("End of File")
-				break
-			if re.search("\w", c):
-				ch = ch + c
-			elif ch != '':
-				list_holder.append(ch)
-				ch = ''
-	list_holder = clean_list(list_holder)
+	file_list = []
+	final_list_holder = []
+	file_list.extend(glob.glob('*.py'))
+	
+	for each_file in file_list:
+		ch = ''
+		list_holder = []	
+		with open(each_file) as f:
+			while True:
+				c = f.read(1)
+				if not c:
+					print("End of File")
+					break
+				if re.search("\w", c):
+						ch = ch + c
+				elif ch != '':
+					list_holder.append(ch)
+					ch = ''
+			final_list_holder.extend(clean_list(list_holder))
+			print(final_list_holder)
 
 	#write the file symbols	
 	with open('symbols', "w") as file_to_write:
 		#add iteration, which should definitely be for loop
-		for each_index in list_holder:
+		for each_index in final_list_holder:
 			print("[hw5.py, " + each_index + "]\n", file=file_to_write)
 			
 #*******************************END OF FUNCTION**************************************
